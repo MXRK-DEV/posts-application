@@ -27,10 +27,10 @@ app.use("/api/posts", postsRoutes);
 app.use("/api/users", usersRoutes);
 
 // use the client
-app.use(express.static(path.join(__dirname, '/client/build')))
+app.use(express.static(path.join(__dirname, '/client/dist')))
 
 // render client for any path 
-app.get('*', (req,res) => res.sendFile((__dirname, '/client/build/index.html')))
+app.get('*', (req,res) => res.sendFile((__dirname, '/client/dist/index.html')))
 
 // Connecting to MongoDB using Mongoose
 mongoose
@@ -39,6 +39,6 @@ mongoose.connect(process.env.MONGO_URI, {dbName: "Django"})
     console.log("connected to DB successfully");
     
     // Listening to requests if DB connection is successful
-    app.listen(4000, "localhost", () => console.log("Listening to port 4000"));
+    app.listen(4000,  () => console.log("Listening to port 4000"));
   })
   .catch((err) => console.log(err));
